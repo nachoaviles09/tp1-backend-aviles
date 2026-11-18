@@ -10,20 +10,30 @@ $entrenadores = [
     new Entrenador(3, 'Diego', 'Peralta', 'diego.peralta@gym.com', 'CrossFit', 'MAT-3150'),
 ];
 
+// Clases existentes (misma base que en index.php) para calcular el siguiente ID
+$clasesGrupales = [
+    new ClaseGrupal(1, 'CrossFit Intenso', 'lunes', 20, 20, 3),
+    new ClaseGrupal(2, 'Spinning Nocturno', 'miercoles', 15, 12, 2),
+    new ClaseGrupal(3, 'Funcional Full Body', 'viernes', 25, 18, 1),
+    new ClaseGrupal(4, 'HIIT Sabatino', 'sabado', 12, 12, 1),
+];
+
 $mensajeExito = null;
 $mensajeError = null;
 $claseCreada = null;
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     try {
-        $id = filter_var($_POST['clase_grupal_id'] ?? null, FILTER_VALIDATE_INT);
         $cupoMaximo = filter_var($_POST['cupoMaximo'] ?? null, FILTER_VALIDATE_INT);
         $inscriptos = filter_var($_POST['inscriptos'] ?? null, FILTER_VALIDATE_INT);
         $entrenadorId = filter_var($_POST['entrenador_id'] ?? null, FILTER_VALIDATE_INT);
 
-        if ($id === false || $cupoMaximo === false || $inscriptos === false || $entrenadorId === false) {
-            throw new Exception("Los campos numéricos (ID, cupo máximo, inscriptos y entrenador) deben ser enteros válidos.");
+        if ($cupoMaximo === false || $inscriptos === false || $entrenadorId === false) {
+            throw new Exception("Los campos numéricos (cupo máximo, inscriptos y entrenador) deben ser enteros válidos.");
         }
+
+        // El ID se genera automáticamente en PHP (cantidad de clases + 1)
+        $id = count($clasesGrupales) + 1;
 
         $nombre = (string) ($_POST['nombre'] ?? '');
         $dia = (string) ($_POST['dia'] ?? '');
@@ -37,6 +47,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $entrenadorId
         );
 
+        $clasesGrupales[] = $claseCreada;
         $mensajeExito = "Clase grupal registrada correctamente.";
     } catch (Exception $e) {
         $mensajeError = $e->getMessage();
@@ -79,7 +90,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <div class="alert ok">
             <strong><?= htmlspecialchars($mensajeExito) ?></strong>
             <ul>
-                <li><strong>clase_grupal_id:</strong> <?= $claseCreada->getClaseGrupalId() ?></li>
+                <li><strong>clase_grupal_id (generado):</strong> <?= $claseCreada->getClaseGrupalId() ?></li>
                 <li><strong>nombre:</strong> <?= htmlspecialchars($claseCreada->getNombre()) ?></li>
                 <li><strong>dia:</strong> <?= htmlspecialchars($claseCreada->getDia()) ?></li>
                 <li><strong>cupoMaximo:</strong> <?= $claseCreada->getCupoMaximo() ?></li>
@@ -91,11 +102,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <?php endif; ?>
 
     <form method="POST" action="formulario.php" novalidate>
-        <label>
-            ID de Clase Grupal (clase_grupal_id)
-            <input type="number" name="clase_grupal_id" min="1" value="<?= htmlspecialchars((string) ($_POST['clase_grupal_id'] ?? '5')) ?>" required>
-        </label>
-
         <label>
             Nombre de la clase (nombre)
             <input type="text" name="nombre" value="<?= htmlspecialchars((string) ($_POST['nombre'] ?? '')) ?>" placeholder="Ej: Yoga Integral" required>
