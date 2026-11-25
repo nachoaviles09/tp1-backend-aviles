@@ -5,15 +5,15 @@ require_once __DIR__ . '/clases/Entrenador.php';
 require_once __DIR__ . '/clases/ClaseGrupal.php';
 
 $entrenadores = [
-    new Entrenador(1, 'Martín', 'Gómez', 'martin.gomez@gym.com', 'Musculación y Funcional', 'MAT-1042'),
-    new Entrenador(2, 'Laura', 'Fernández', 'laura.fernandez@gym.com', 'Spinning y Cardio', 'MAT-2089'),
-    new Entrenador(3, 'Diego', 'Peralta', 'diego.peralta@gym.com', 'CrossFit', 'MAT-3150'),
+    new Entrenador(1, 'Facundo', 'Salinas', 'facundo.salinas@gymparana.com', 'Musculación y Funcional', 'MAT-1042'),
+    new Entrenador(2, 'Valentina', 'Roldán', 'valentina.roldan@gymparana.com', 'Spinning y Cardio', 'MAT-2089'),
+    new Entrenador(3, 'Matías', 'Cabrera', 'matias.cabrera@gymparana.com', 'CrossFit', 'MAT-3150'),
 ];
 
 // Clases existentes (misma base que en index.php) para calcular el siguiente ID
 $clasesGrupales = [
     new ClaseGrupal(1, 'CrossFit Intenso', 'lunes', 20, 20, 3),
-    new ClaseGrupal(2, 'Spinning Nocturno', 'miercoles', 15, 12, 2),
+    new ClaseGrupal(2, 'Spinning Costanera', 'miercoles', 15, 12, 2),
     new ClaseGrupal(3, 'Funcional Full Body', 'viernes', 25, 18, 1),
     new ClaseGrupal(4, 'HIIT Sabatino', 'sabado', 12, 12, 1),
 ];

@@ -7,9 +7,9 @@ require_once __DIR__ . '/clases/ClaseGrupal.php';
 
 // 3 Entrenadores (clase hija 1)
 $entrenadores = [
-    new Entrenador(1, 'Martín', 'Gómez', 'martin.gomez@gym.com', 'Musculación y Funcional', 'MAT-1042'),
-    new Entrenador(2, 'Laura', 'Fernández', 'laura.fernandez@gym.com', 'Spinning y Cardio', 'MAT-2089'),
-    new Entrenador(3, 'Diego', 'Peralta', 'diego.peralta@gym.com', 'CrossFit', 'MAT-3150'),
+    new Entrenador(1, 'Facundo', 'Salinas', 'facundo.salinas@gymparana.com', 'Musculación y Funcional', 'MAT-1042'),
+    new Entrenador(2, 'Valentina', 'Roldán', 'valentina.roldan@gymparana.com', 'Spinning y Cardio', 'MAT-2089'),
+    new Entrenador(3, 'Matías', 'Cabrera', 'matias.cabrera@gymparana.com', 'CrossFit', 'MAT-3150'),
 ];
 
 // Mapa auxiliar para resolver nombre del entrenador por entrenador_id
@@ -20,15 +20,15 @@ foreach ($entrenadores as $entrenador) {
 
 // 3 Socios (clase hija 2)
 $socios = [
-    new Socio(1, 'Camila', 'Ríos', 'camila.rios@mail.com', 1001, 'mensual'),
-    new Socio(2, 'Lucas', 'Méndez', 'lucas.mendez@mail.com', 1002, 'trimestral'),
-    new Socio(3, 'Sofía', 'Acosta', 'sofia.acosta@mail.com', 1003, 'anual'),
+    new Socio(1, 'Florencia', 'Villalba', 'flor.villalba@mail.com', 1001, 'mensual'),
+    new Socio(2, 'Nicolás', 'Báez', 'nico.baez@mail.com', 1002, 'trimestral'),
+    new Socio(3, 'Lucía', 'Godoy', 'lucia.godoy@mail.com', 1003, 'anual'),
 ];
 
-// 4 Clases Grupales (clase independiente - incluye ejemplo 20/20 de la ficha)
+// 4 Clases Grupales (clase independiente)
 $clasesGrupales = [
     new ClaseGrupal(1, 'CrossFit Intenso', 'lunes', 20, 20, 3),
-    new ClaseGrupal(2, 'Spinning Nocturno', 'miercoles', 15, 12, 2),
+    new ClaseGrupal(2, 'Spinning Costanera', 'miercoles', 15, 12, 2),
     new ClaseGrupal(3, 'Funcional Full Body', 'viernes', 25, 18, 1),
     new ClaseGrupal(4, 'HIIT Sabatino', 'sabado', 12, 12, 1),
 ];
@@ -103,7 +103,7 @@ $clasesGrupales = [
     <h2>Demostración de Regla de Negocio</h2>
 
     <?php
-    // Ejemplo 1: Clase con cupo disponible (Spinning Nocturno: 12/15)
+    // Ejemplo 1: Clase con cupo disponible
     $claseConLugar = $clasesGrupales[1];
     ?>
     <div class="box ok">
@@ -118,7 +118,7 @@ $clasesGrupales = [
     </div>
 
     <?php
-    // Ejemplo 2: Clase completa (CrossFit Intenso: 20/20 -> ejemplo oficial de la ficha)
+    // Ejemplo 2: Clase completa 
     $claseCompleta = $clasesGrupales[0];
     ?>
     <div class="box error">
